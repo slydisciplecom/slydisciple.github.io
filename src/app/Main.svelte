@@ -1,3 +1,7 @@
+<script>
+    // import { MailChimp } from "../components"
+</script>
+
 <main class="hero">
     <img class="background-image" src="/assets/cover.jpg" />
     <div class="info">
@@ -27,7 +31,7 @@
     </div>
 </main>
 
-<style>
+<style lang="scss">
     main {
         background-color: #487ab4;
         color: white;
