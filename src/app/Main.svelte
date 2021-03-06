@@ -1,132 +1,83 @@
 <script>
-    // import { MailChimp } from "../components"
+    import { MailChimp } from "../components"
+    const alt = "outworld album cover"
+
+    const links = [
+        {
+            href: "https://open.spotify.com/artist/6TSLU6RCFiLnRKXCBn0Sbo",
+            src: "/assets/spotify.png",
+            alt: "Spotify"
+        },
+        {
+            href: "https://www.youtube.com/channel/UCb854cgygVAg8MnBxIoYqcA",
+            src: "/assets/youtube.png",
+            alt: "Youtube",
+            clazz: "pt-2"
+        },
+        {
+            href: "https://music.apple.com/us/artist/sly-disciple/958399218",
+            src: "/assets/apple.png",
+            alt: "Apple Music"
+        },
+        {
+            href: "https://www.instagram.com/sly.disciple/",
+            src: "/assets/ig.png",
+            alt: "Instagram"
+        }
+    ]
 </script>
 
-<main class="hero">
-    <img class="background-image" src="/assets/cover.jpg" />
-    <div class="info">
-        <img class="album" src="/assets/cover.jpg" />
-        <div class="text-container">
-            <h1 class="title">Outworld</h1>
-            <span class="message">Available Everywhere</span>
+<main class="hero relative w-full h-full">
+    <img
+        class="background-image absolute z-0 overflow-hidden w-full h-full object-cover"
+        src="/assets/cover.jpg"
+        {alt}
+    />
+    <div class="top-0 left-0 z-10 flex items-center justify-center w-full h-full">
+        <img
+            class="h-96 absolute m-auto max-w-full max-h-full object-contain"
+            src="/assets/cover.jpg"
+            {alt}
+        />
+        <div class="text-container z-20 text-white">
+            <h1 class="tracking-4 text-center uppercase font-bold text-3xl sm:text-5xl">
+                Sly Disciple
+            </h1>
+            <div class="text-center tracking-widest text-xl">
+                <span class="uppercase font-semibold">Outworld</span> The Album
+                <br /> <span class="italic">Now Available</span>
+            </div>
         </div>
     </div>
-    <div class="footer">
-        <a target="_blank" href="https://open.spotify.com/artist/6TSLU6RCFiLnRKXCBn0Sbo">
-            <img src="/assets/spotify.png" alt="Spotify" />
-        </a>
-        <a
-            class="youtube"
-            target="_blank"
-            href="https://www.youtube.com/channel/UCb854cgygVAg8MnBxIoYqcA"
-        >
-            <img src="/assets/youtube.png" alt="Youtube" />
-        </a>
-        <a target="_blank" href="https://music.apple.com/us/artist/sly-disciple/958399218">
-            <img src="/assets/apple.png" alt="Apple Music" />
-        </a>
-        <a target="_blank" href="https://www.instagram.com/sly.disciple/">
-            <img src="/assets/ig.png" alt="Instagram" />
-        </a>
+    <div class="footer h-1/3 justify-evenly absolute bottom-0 left-0 flex w-full sm:h-16">
+        {#each links as { href, src, alt, clazz }}
+            <a class="{clazz ?? ''} text-white" target="_blank" {href}>
+                <img class="hover:opacity-80 duration-300 transition absolute w-12" {src} {alt} />
+            </a>
+        {/each}
     </div>
 </main>
 
+<MailChimp />
+
 <style lang="scss">
+    .tracking-4 {
+        letter-spacing: 1rem;
+    }
+
     main {
         background-color: #487ab4;
-        color: white;
-    }
-    .hero {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-    }
-    .hero .background-image {
-        overflow: hidden;
-        width: 100%;
-        height: 100vh;
-        filter: blur(4px);
-        object-fit: cover;
-        object-position: 50% 38%;
-    }
 
-    .hero .album {
-        margin: auto;
-        max-width: 100%;
-        height: 375px;
-        object-fit: contain;
-    }
-
-    .hero img,
-    .text-container,
-    .footer {
-        position: absolute;
-    }
-
-    .text-container {
-        padding-left: 3vw;
-        color: white;
-        text-transform: uppercase;
-    }
-
-    .hero .info {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-    }
-
-    .title {
-        text-align: center;
-        letter-spacing: 20px;
-        font-size: 70px;
-    }
-    .message {
-        display: block;
-        text-align: center;
-        letter-spacing: 5px;
-        font-size: 25px;
-    }
-
-    a {
-        color: white;
-        text-decoration: none;
-    }
-
-    .footer {
-        bottom: 0;
-        left: 0;
-
-        display: flex;
-        justify-content: space-evenly;
-        width: 100%;
-    }
-
-    .footer {
-        margin-left: -23px;
-        height: 4rem;
-    }
-
-    .footer img {
-        min-width: 50px;
-        width: 3rem;
-    }
-
-    .footer img:hover {
-        opacity: 0.8;
-    }
-
-    @media screen and (max-width: 615px) {
-        .title {
-            font-size: 8vw;
+        .background-image {
+            filter: blur(4px);
+            object-position: 50% 38%;
         }
+
         .footer {
-            height: 30%;
+            margin-left: -23px;
+            img {
+                min-width: 50px;
+            }
         }
-    }
-
-    .youtube {
-        padding-top: 8px;
     }
 </style>

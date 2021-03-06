@@ -1,17 +1,36 @@
 <script>
-    // https://stackoverflow.com/a/46948719/3019595
+    // https://stackoverflow.com/a/59847337/3019595
+    async function send(event) {
+        event.preventDefault()
+
+        const { target: form } = event
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: new FormData(form)
+            })
+
+            console.log(response)
+
+            const json = await response.json()
+
+            console.log(json)
+        } catch (error) {
+            console.error(error)
+        }
+    }
 </script>
 
 <!-- Begin Mailchimp Signup Form -->
-<div id="mc_embed_signup" class="bg-black">
+<div id="mc_embed_signup" class="hidden bg-black">
     <form
         action="https://Slydisciple.us7.list-manage.com/subscribe/post?u=fc6e81b3722857cf8227d6608&amp;id=ea93069cec"
         method="post"
         id="mc-embedded-subscribe-form"
         name="mc-embedded-subscribe-form"
-        class="validate"
-        target="_blank"
         novalidate
+        on:submit={send}
     >
         <div id="mc_embed_signup_scroll">
             <div class="mc-field-group">
@@ -34,7 +53,7 @@
                 <div class="response" id="mce-error-response" style="display:none" />
                 <div class="response" id="mce-success-response" style="display:none" />
             </div>
-            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+
             <div style="position: absolute; left: -5000px;" aria-hidden="true">
                 <input
                     type="text"

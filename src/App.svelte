@@ -1,7 +1,5 @@
 <script>
     import { Main } from "./app"
-    console.log("hello to the world!")
-    console.log(Main)
 </script>
 
 <Main />
